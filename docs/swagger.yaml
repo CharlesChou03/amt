@@ -1,0 +1,74 @@
+definitions:
+  models.GetTutorRes:
+    properties:
+      headline:
+        type: string
+      id:
+        type: string
+      introduction:
+        type: string
+      name:
+        type: string
+      price_info:
+        $ref: '#/definitions/models.PriceInfo'
+      slug:
+        type: string
+      teaching_languages:
+        items:
+          type: integer
+        type: array
+    type: object
+  models.PriceInfo:
+    properties:
+      normal:
+        type: number
+      trial:
+        type: number
+    type: object
+info:
+  contact: {}
+  title: Swagger
+  version: 0.0.1
+paths:
+  /api/tutor/{tutor}:
+    get:
+      consumes:
+      - application/json
+      description: get tutor information
+      parameters:
+      - description: tutor
+        in: path
+        name: tutor
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/models.GetTutorRes'
+        "204":
+          description: no content
+        "400":
+          description: bad request
+      summary: get tutor information
+      tags:
+      - Tutor Information
+  /health:
+    get:
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: health checker API
+  /version:
+    get:
+      responses:
+        "200":
+          description: 0.0.1
+          schema:
+            type: string
+      summary: service version API
+swagger: "2.0"

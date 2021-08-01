@@ -1,0 +1,116 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Swagger",
+        "contact": {},
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/api/tutor/{tutor}": {
+            "get": {
+                "description": "get tutor information",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tutor Information"
+                ],
+                "summary": "get tutor information",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "tutor",
+                        "name": "tutor",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/models.GetTutorRes"
+                        }
+                    },
+                    "204": {
+                        "description": "no content"
+                    },
+                    "400": {
+                        "description": "bad request"
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "health checker API",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/version": {
+            "get": {
+                "summary": "service version API",
+                "responses": {
+                    "200": {
+                        "description": "0.0.1",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.GetTutorRes": {
+            "type": "object",
+            "properties": {
+                "headline": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "introduction": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price_info": {
+                    "$ref": "#/definitions/models.PriceInfo"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "teaching_languages": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "models.PriceInfo": {
+            "type": "object",
+            "properties": {
+                "normal": {
+                    "type": "number"
+                },
+                "trial": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
