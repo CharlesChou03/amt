@@ -89,7 +89,6 @@ func GetTutorInfoFromDB(slug string) (bool, db.Tutor, db.TutorLessonPrice, []db.
 func AggregateTutorInfo(tutor db.Tutor,
 	tutorLessonPrice db.TutorLessonPrice,
 	tutorLanguages []db.TutorLanguage) modelsRes.GetTutorRes {
-
 	tutorInfo := modelsRes.GetTutorRes{}
 	tutorInfo.ID = strconv.Itoa(tutor.ID)
 	tutorInfo.Slug = tutor.Slug
