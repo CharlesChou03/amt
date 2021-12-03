@@ -38,6 +38,13 @@ func SetupMySQLDB() *MySQLTutorDB {
 	return &MySQLTutorDB{DB: db}
 }
 
+func (db *MySQLTutorDB) CreateTutorTable() {
+	db.DB.Set("gorm:table_options", "COLLATE=utf8mb4_general_ci").AutoMigrate(&Tutor{})
+	db.DB.Set("gorm:table_options", "COLLATE=utf8mb4_general_ci").AutoMigrate(&TutorLessonPrice{})
+	db.DB.Set("gorm:table_options", "COLLATE=utf8mb4_general_ci").AutoMigrate(&TutorLanguage{})
+	db.DB.Set("gorm:table_options", "COLLATE=utf8mb4_general_ci").AutoMigrate(&Language{})
+}
+
 func (db *MySQLTutorDB) Close() {
 	sqlDB, _ := db.DB.DB()
 	sqlDB.Close()

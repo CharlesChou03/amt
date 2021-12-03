@@ -13,6 +13,7 @@ import (
 func setup() {
 	config.Setup()
 	db.MySQLDB = db.SetupMySQLDB()
+	db.MySQLDB.CreateTutorTable()
 	db.RedisDB = db.SetupRedisDB()
 }
 
